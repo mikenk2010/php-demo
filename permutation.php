@@ -49,5 +49,5 @@ function permutation($digits) {
     }
   }
 
-  echo json_encode($result);
+  return $result;
 }

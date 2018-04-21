@@ -15,7 +15,8 @@ $num = [1, 3, -1, -3, 5, 3, 6, 7];
 $k = 3;
 
 // Func
-slidingWindow($num, $k);
+$result = slidingWindow($num, $k);
+echo json_encode($result);
 
 // Cal exe time
 recordEnd($start);
@@ -32,7 +33,8 @@ echo strtoupper("<b>Permutation</b><br/>");
 $digits = "23a";
 
 // Call
-permutation($digits);
+$result = permutation($digits);
+echo json_encode($result);
 
 // Cal exe time
 recordEnd($start);

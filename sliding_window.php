@@ -23,5 +23,5 @@ function slidingWindow($num, $k) {
     $result[] = $max;
   }
 
-  echo json_encode($result);
+  return $result;
 }
