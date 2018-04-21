@@ -60,7 +60,7 @@ if (!empty($_POST['permutation'])) {
     <?php if (!empty($result_sliding)) { ?>
       <div class="form-group">
         <label for="">Result</label>
-      <textarea disabled cols="10" rows="10" class="form-control" id="sliding_result" name="sliding_result"><?php echo nl2br($result_sliding) ?>
+      <textarea disabled cols="5" rows="5" class="form-control" id="sliding_result" name="sliding_result"><?php echo nl2br($result_sliding) ?>
       </textarea>
       </div>
     <?php } ?>
