@@ -13,3 +13,7 @@ slidingWindow([1, 3, -1, -3, 5, 3, 6, 7], 3);
 // $digits = "23"; // String numpad
 permutation($digits);
 ```
+
+# Heroku Demo
+
+[Heroku PHP Demo](https://php-demo-bao.herokuapp.com/)
