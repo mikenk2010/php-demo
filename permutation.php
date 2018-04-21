@@ -8,7 +8,8 @@
  * @return string
  */
 function permutation($digits) {
-  echo "Digit: {$digits}<br/>";
+  $start = recordStart();
+
   $keypads = [
     "0",
     "1",
@@ -26,7 +27,10 @@ function permutation($digits) {
   }
 
   // Avoid Blackberry phone ^^!, remove all char, keep number only
-  $digits = preg_replace("/[^0-9,.]/", "", $digits);
+  $digits = preg_replace("/[^0-9]/", "", $digits);
+  if (empty($digits)) {
+    return "Incorrect digit";
+  }
 
   // Init to pass while loop
   $result = [""];
@@ -49,5 +53,7 @@ function permutation($digits) {
     }
   }
 
-  return $result;
+  $end = recordEnd($start);
+
+  return ['result' => $result, 'total match' => count($result), 'input' => $digits, 'total exe time (microsecond)' => $end];
 }
