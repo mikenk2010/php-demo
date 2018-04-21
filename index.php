@@ -15,7 +15,7 @@ if (!empty($_POST['sliding_array']) || !empty($_POST['sliding_key'])) {
       $result_sliding = "Value `Slide` must > 1";
     }
     else {
-      $result_sliding = json_encode(slidingWindow($_POST['sliding_array'], $_POST['sliding_key']));
+      $result_sliding = implode("\n", slidingWindow($_POST['sliding_array'], $_POST['sliding_key']));
     }
   }
   else {
@@ -60,7 +60,7 @@ if (!empty($_POST['permutation'])) {
     <?php if (!empty($result_sliding)) { ?>
       <div class="form-group">
         <label for="">Result</label>
-      <textarea disabled cols="5" rows="5" class="form-control" id="sliding_result" name="sliding_result"><?php echo nl2br($result_sliding) ?>
+      <textarea disabled cols="5" rows="5" class="form-control" id="sliding_result" name="sliding_result"><?php echo($result_sliding) ?>
       </textarea>
       </div>
     <?php } ?>
@@ -75,7 +75,7 @@ if (!empty($_POST['permutation'])) {
     <?php if (!empty($result_permutation)) { ?>
       <div class="form-group">
         <label for="">Result</label>
-      <textarea disabled cols="5" rows="5" class="form-control" id="permutation_result" name="permutation_result"><?php echo nl2br($result_permutation) ?>
+      <textarea disabled cols="5" rows="5" class="form-control" id="permutation_result" name="permutation_result"><?php echo($result_permutation) ?>
       </textarea>
       </div>
     <?php } ?>
