@@ -10,16 +10,12 @@ include "sliding_window.php";
 // Sliding window
 $result_sliding = '';
 if (!empty($_POST['sliding_array']) || !empty($_POST['sliding_key'])) {
-  if (!empty($_POST['sliding_array']) && !empty($_POST['sliding_key'])) {
-    if ((int) $_POST['sliding_key'] <= 0) {
-      $result_sliding = "Value `Slide` must > 1";
-    }
-    else {
-      $result_sliding = implode("\n", slidingWindow($_POST['sliding_array'], $_POST['sliding_key']));
-    }
+  if (!empty($_POST['sliding_array']) && $sliding_key = validateSlidingKey($_POST['sliding_key'])) {
+    $sliding_arr = formatData($_POST['sliding_array']);
+    $result_sliding = implode("\n", slidingWindow($sliding_arr, $sliding_key));
   }
   else {
-    $result_sliding = "Missing value `Array` or `Slide`";
+    $result_sliding = "Error happened with `Array` or `Slide`";
   }
 }
 
