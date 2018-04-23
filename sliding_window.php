@@ -12,6 +12,7 @@ function slidingWindow($num, $k) {
   return [
     "Raw method" => json_encode(raw_method($num, $k)),
     "Raw method2" => json_encode(raw_method2($num, $k)),
+    "Raw method3" => json_encode(raw_method3($num, $k)),
     "build-in" => json_encode(build_in_method($num, $k)),
   ];
 }
@@ -74,6 +75,70 @@ function raw_method2($nums, $k) {
   $end = recordEnd($start);
 
   return ['result raw_method2' => $result, 'input' => $nums, 'slide' => $k, 'total exe time (microsecond)' => $end];
+}
+
+/**
+ * @param $nums array
+ * @param $k string
+ * @return array
+ */
+function raw_method3($nums, $k) {
+  $start = recordStart();
+  $result = [];
+
+//        while (end < len) {
+//          if (maxIndex < begin) {
+//            //Update the maximun value and index;
+//            max = nums[begin];
+//            maxIndex = begin;
+//            for (int i = begin + 1; i <= end; i++) {
+//              if (nums[i] >= max) {
+//                max = nums[i];
+//                maxIndex = i;
+//              }
+//            }
+//
+//            } else {
+//            if (nums[end] > max) {
+//              max = nums[end];
+//              maxIndex = end;
+//            }
+//          }
+//          result[begin] = max;
+//          begin++;
+//          end++;
+//        }
+  $max = 0;
+  $maxIndex = -1;
+  $begin = 0;
+  $end = $k - 1;
+  $len = count($nums);
+
+  while ($end < $len) {
+    if ($maxIndex < $begin) {
+      $max = $nums[$begin];
+      $maxIndex = $begin;
+      for ($i = $begin + 1; $i <= $end; $i++) {
+        if ($nums[$i] >= $max) {
+          $max = $nums[$i];
+          $maxIndex = $i;
+        }
+      }
+    }
+    else {
+      if ($nums[$end] > $max) {
+        $max = $nums[$end];
+        $maxIndex = $end;
+      }
+    }
+    $result[] = $max;
+    $begin++;
+    $end++;
+  }
+
+  $end = recordEnd($start);
+
+  return ['result raw_method3' => $result, 'input' => $nums, 'slide' => $k, 'total exe time (microsecond)' => $end];
 }
 
 function build_in_method($nums, $k) {
