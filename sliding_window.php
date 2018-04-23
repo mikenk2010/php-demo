@@ -57,15 +57,17 @@ function raw_method2($nums, $k) {
 
   // Separate max start from left and max start from right
   for ($i = 0; $i < count($nums); $i++) {
+    // Collect max start from left
     $max_left[$i] = ($i % $k == 0) ? $nums[$i] : max($max_left[$i - 1], $nums[$i]);
 
+    // Collect max start from right
     $j = count($nums) - $i - 1;
     $max_right[$j] = ($j % $k == 0) ? $nums[$j] : max(isset($max_right[$j + 1]) ? $max_right[$j + 1] : $max_right[$j], $nums[$j]);
   }
 
   // Merge and compare
-  for ($i = 0, $j = 0; $i + $k <= count($nums); $i++) {
-    $result[$j++] = max($max_right[$i], $max_left[$i + $k - 1]);
+  for ($i = 0; $i + $k <= count($nums); $i++) {
+    $result[] = max($max_right[$i], $max_left[$i + $k - 1]);
   }
 
 
