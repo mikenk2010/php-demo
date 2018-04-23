@@ -85,29 +85,6 @@ function raw_method2($nums, $k) {
 function raw_method3($nums, $k) {
   $start = recordStart();
   $result = [];
-
-//        while (end < len) {
-//          if (maxIndex < begin) {
-//            //Update the maximun value and index;
-//            max = nums[begin];
-//            maxIndex = begin;
-//            for (int i = begin + 1; i <= end; i++) {
-//              if (nums[i] >= max) {
-//                max = nums[i];
-//                maxIndex = i;
-//              }
-//            }
-//
-//            } else {
-//            if (nums[end] > max) {
-//              max = nums[end];
-//              maxIndex = end;
-//            }
-//          }
-//          result[begin] = max;
-//          begin++;
-//          end++;
-//        }
   $max = 0;
   $maxIndex = -1;
   $begin = 0;
