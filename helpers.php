@@ -56,5 +56,5 @@ function showGit() {
   $commitDate = new \DateTime(trim(exec('git log -n1 --pretty=%ci HEAD')));
   $commitDate->setTimezone(new \DateTimeZone('UTC'));
 
-  return sprintf('v%s.%s.%s-dev.%s (%s)', 1, 2, 3, $commitHash, $commitDate->format('Y-m-d H:m:s'));
+  return sprintf('v%s.%s.%s-dev.%s (%s)', 0, 0, 1, $commitHash, $commitDate->format('Y-m-d H:m:s'));
 }
