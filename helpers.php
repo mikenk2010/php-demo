@@ -49,3 +49,12 @@ function binary_search(array $a, $first, $last, $target) {
 function validateSlidingKey($k) {
   return (int) $k > 0 ? $k : false;
 }
+
+function showGit() {
+  $commitHash = trim(exec('git log --pretty="%h" -n1 HEAD'));
+
+  $commitDate = new \DateTime(trim(exec('git log -n1 --pretty=%ci HEAD')));
+  $commitDate->setTimezone(new \DateTimeZone('UTC'));
+
+  return sprintf('v%s.%s.%s-dev.%s (%s)', 1, 2, 3, $commitHash, $commitDate->format('Y-m-d H:m:s'));
+}

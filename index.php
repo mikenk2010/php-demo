@@ -77,6 +77,12 @@ if (!empty($_POST['permutation'])) {
     <?php } ?>
     <button type="submit" class="btn btn-default">Submit</button>
   </form>
+  
+  <footer>
+    <div style="margin-top: 20px">
+      Update <?php echo showGit() ?>
+    </div>
+  </footer>
 </div>
 
 </body>
