@@ -1,4 +1,4 @@
-# Q1 Find the cancellation rate of requests made by unbanned users between Oct 1, 2013 and Oct 3, 2013
+# Q1
 
 ### Step 1: Create VIEW (`trip_cancelled`) to collect Banned user and date between `Oct 1, 2013` and `Oct 3, 2013`
 
@@ -38,7 +38,7 @@ Day         Cancellation Rate
 2013-10-03	0.50
 ```
 
-# Q2 print the node id and the type of the node.
+# Q2
 ### Step 1: Create VIEWS
 - `tree_distinct_id`: To collect distinct id
 ```
