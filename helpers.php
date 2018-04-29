@@ -26,24 +26,31 @@ function formatData($num) {
   return $nums;
 }
 
-function binary_search(array $a, $first, $last, $target) {
-  $last = $last - 1;
+function binary_search($a, $k) {
 
-  while ($first <= $last) {
-    $mid = (int) (($last - $first) / 2) + $first;
-    $compare = ($a[$mid] < $target) ? -1 : (($a[$mid] > $target) ? 1 : 0);
+  //find the middle
+  $middle = round(count($a) / 2, 0) - 1;
 
-    if ($compare < 0) {
-      $first = $mid + 1;
-    }
-    elseif ($compare > 0) {
-      $last = $mid - 1;
-    }
-    else {
-      return $mid; // position ==> found
-    }
+  //if the middle is the key we search...
+  if ($k == $a[$middle]) {
+    echo $a[$middle] . " found";
+    return true;
   }
-  return false;
+  //if the array lasts just one key while the middle isn't the key we search
+  elseif (count($a) == 1) {
+    echo $k . " not found";
+    return false;
+  }
+  //if the key we search is lower than the middle
+  elseif ($k < $a[$middle]) {
+    //make an array of the left half and search in this array
+    return binary_search(array_slice($a, 0, $middle), $k);
+  }
+  //if the key we search is higher than the middle
+  elseif ($k > $a[$middle - 1]) {
+    //make an array of the right half and search in this array
+    return binary_search(array_slice($a, $middle + 1), $k);
+  }
 }
 
 function validateSlidingKey($k) {
@@ -57,4 +64,20 @@ function showGit() {
   $commitDate->setTimezone(new \DateTimeZone('UTC'));
 
   return sprintf('v%s.%s.%s-dev.%s (%s)', 0, 0, 1, $commitHash, $commitDate->format('Y-m-d H:m:s'));
+}
+
+function connectionDb() {
+  $servername = "jobkred.c22jbs7ehg2m.us-east-1.rds.amazonaws.com";
+  $username = "root";
+  $password = "JobKred02018!o";
+  $dbname = "jobkred";
+
+// Create connection
+  $conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check connection
+  if ($conn->connect_error) {
+    return false;
+  }
+  return $conn;
 }
