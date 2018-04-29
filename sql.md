@@ -41,39 +41,71 @@ Day         Cancellation Rate
 # Q2 print the node id and the type of the node.
 ### Step 1: Create VIEWS
 - `tree_distinct_id`: To collect distinct id
+```
+CREATE VIEW `tree_distinct_id`
+AS
+  SELECT
+    DISTINCT p_id 
+  FROM 
+    tree 
+  WHERE 
+    p_id IS NOT NULL;
+```
+
 - `tree_root`: Collect Root Id based on VIEW `tree_distinct_id`
+```
+CREATE VIEW `tree_root`
+AS
+  SELECT
+    id, p_id, 'Root' AS Type
+  FROM
+      tree
+  WHERE
+      p_id IS NULL;
+
+```
+
 - `tree_leaf`: Collect Leaf Id based on VIEW `tree_distinct_id`
+```
+CREATE VIEW `tree_leaf`
+AS
+  SELECT
+    id, p_id, 'Leaf' AS Type
+  FROM
+    tree
+  WHERE
+    id NOT IN (SELECT * FROM `tree_distinct_id`)
+    AND p_id IS NOT NULL;
+```
+
 - `tree_inner`: Collect Inner Id based on VIEW `tree_distinct_id`
+```
+CREATE VIEW `tree_inner`
+AS
+  SELECT
+    id, p_id, 'Inner' AS Type
+  FROM
+    tree
+  WHERE
+    id IN (SELECT * FROM `tree_distinct_id`)
+    AND p_id IS NOT NULL;
+```
 
 ### Step 2: Calculate data
 #### Using `UNION` to connect `VIEWS`
 
 ```
-SELECT
-  *
-FROM
-  `tree_root`
-
+SELECT * FROM `tree_root`
 UNION
-
-SELECT
-  *
-FROM
-  `tree_leaf`
-
-UNION
-
-SELECT
-  *
-FROM
-  `tree_inner`
+SELECT * FROM `tree_leaf`
+UNION SELECT * FROM `tree_inner`
 ORDER BY
   p_id
 ```
 
 # SQL Query file
-[queries_q1-q2.sql](./queries_q1-q2.sql target="_blank)
+[queries_q1-q2.sql](./queries_q1-q2.sql)
 
 # Demonstrate SQL result
 
-![Image](https://i.imgur.com/G00rHlS.png target="_blank)
+![Image](https://i.imgur.com/G00rHlS.png)
