@@ -35,7 +35,7 @@ INSERT INTO Trips (Id, Client_Id, Driver_Id, City_Id, Status, Request_at)
   ('9', '3', '10', '12', 'completed', '2013-10-03'),
   ('10', '4', '13', '12', 'cancelled_by_driver', '2013-10-03');
 
--- Clear data
+-- Clreate data
 TRUNCATE TABLE Users;
 
 -- Insert data
@@ -140,25 +140,39 @@ AS
     id IN (SELECT * FROM `tree_distinct_id`)
     AND p_id IS NOT NULL;
 
--- Execute
-  SELECT
-    *
-  FROM
-    `tree_root`
+-- Method 1
+SELECT 
+  * 
+FROM 
+  `tree_root`
 
 UNION
 
-  SELECT
-    *
-  FROM
-    `tree_leaf`
+SELECT 
+  *
+FROM 
+  `tree_leaf`
 
 UNION
 
-  SELECT
-    *
-  FROM
-    `tree_inner`
-
+SELECT 
+  *
+FROM 
+  `tree_inner`
 ORDER BY 
-  p_id
+  id;
+
+
+-- Method 2
+SELECT
+  id,
+  p_id,
+  CASE
+    WHEN p_id IS NULL THEN 'Root'
+    WHEN id IN (SELECT p_id FROM tree) THEN 'Inner'
+    ELSE 'Leaf'
+  END AS `Type`
+FROM 
+  tree
+ORDER BY 
+  id;
