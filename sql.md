@@ -151,4 +151,4 @@ id	p_id	Type
 
 # Demonstrate SQL result
 
-![Image](https://i.imgur.com/5FFzRCv.png)
+![Image](https://i.imgur.com/bkc8664.png)
