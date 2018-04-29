@@ -95,10 +95,11 @@ AS
 #### Using `UNION` to connect `VIEWS`
 
 ```
-SELECT * FROM `tree_root`
+  SELECT * FROM `tree_root`
 UNION
-SELECT * FROM `tree_leaf`
-UNION SELECT * FROM `tree_inner`
+  SELECT * FROM `tree_leaf`
+UNION 
+  SELECT * FROM `tree_inner`
 ORDER BY
   p_id
 ```
