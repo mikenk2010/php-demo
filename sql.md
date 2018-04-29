@@ -104,9 +104,21 @@ ORDER BY
   p_id
 ```
 
+
+### Result:
+
+```
+id	p_id	Type
+1	NULL	Root
+2	1	Inner
+3	1	Leaf
+4	2	Leaf
+5	2	Leaf
+```
+
 # SQL Query file
 [queries_q1-q2.sql](./queries_q1-q2.sql)
 
 # Demonstrate SQL result
 
-![Image](https://i.imgur.com/G00rHlS.png)
+![Image](https://i.imgur.com/5FFzRCv.png)
