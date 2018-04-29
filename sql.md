@@ -92,6 +92,7 @@ AS
 ```
 
 ### Step 2: Calculate data
+### Method 1
 #### Using `UNION` to connect `VIEWS`
 
 ```
@@ -104,8 +105,7 @@ ORDER BY
   p_id
 ```
 
-
-### Result:
+#### Result of Method 1
 
 ```
 id	p_id	Type
@@ -115,6 +115,36 @@ id	p_id	Type
 4	2	Leaf
 5	2	Leaf
 ```
+
+### Method 2
+
+```
+SELECT
+  id,
+  p_id,
+  CASE
+    WHEN p_id IS NULL THEN 'Root'
+    WHEN id IN (SELECT p_id FROM tree) THEN 'Inner'
+    ELSE 'Leaf'
+  END AS `Type`
+FROM 
+  tree
+ORDER BY 
+  id
+```
+
+#### Result of Method 2
+
+```
+id	p_id	Type
+1	NULL	Root
+2	1	Inner
+3	1	Leaf
+4	2	Leaf
+5	2	Leaf
+```
+
+
 
 # SQL Query file
 [queries_q1-q2.sql](./queries_q1-q2.sql)
